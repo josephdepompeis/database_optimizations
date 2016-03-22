@@ -1,0 +1,15 @@
+
+
+      <!-- <%= form_for @search, remote: true do |f| %>
+      <h3>Your Bid</h3>
+      <%= f.hidden_field :item_id %>
+        <div><span class="prefix">Search Here</span></div>
+        <div><%= f.text_field :amount %></div>
+      <%= f.submit "Submit Search `-`" %>
+        <% end %> -->
+
+
+        <%= form_tag(reports_results_path, :method => "get", id: "search-form", remote: true) do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+        <%= submit_tag "Search" %>
+        <% end %>

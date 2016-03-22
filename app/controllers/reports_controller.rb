@@ -3,44 +3,44 @@ class ReportsController < ApplicationController
 
   def all_data
     @start_time = Time.now
-
-
-
     @assembly = Assembly.find_by_name(params[:name])
       @sequences = @assembly.sequences
-
-      @genes = []
       @hits = []
       @hits = @assembly.hits.order(percent_similarity: :desc)
 
-    # @assembly.sequences.each do |s|
-    #   @sequences << s
-    #   s.genes.each do |g|
-    #     @genes << g
-    #     g.hits.each do |h|
-    #       @hits << h
-    #     end
-    #   end
-    # end
-    # @hits.sort! {|a, b| b.percent_similarity <=> a.percent_similarity}
-
-
-
-        #
-        # get_sequences = Assembly.find_by_name(params[:name])
-        # @sequences = get_sequences.sequences.all
-
-
-
-
-  # byebug
-
-
-
-
-
     @memory_used = memory_in_mb
   end
+
+  def search
+
+@search = "hello"
+@posts = Assembly.all
+if params[:search]
+  @posts = Assembly.search(params[:search]).order("created_at DESC")
+else
+  @posts = Assembly.all.order('created_at DESC')
+end
+
+
+
+
+
+
+    # @start_time = Time.now
+    # @assembly = Assembly.find_by_name(params[:name])
+    #   @sequences = @assembly.sequences
+    #   @hits = []
+    #   @hits = @assembly.hits.order(percent_similarity: :desc)
+    # @memory_used = memory_in_mb
+  end
+
+  def results
+    render "results"
+  end
+
+
+
+
 
   private def memory_in_mb
     `ps -o rss -p #{$$}`.strip.split.last.to_i / 1024
