@@ -1,4 +1,80 @@
-# Database Optimizations
+
+
+## My observations
+
+
+
+
+
+31.15  min before indices
+3580.446537 seconds. after indicies
+
+results after adding indecies
+Total time before HTML is generated: 6.394071 s
+Memory used before HTML is generated: 423 MB
+Number of hits: 52921Total time before HTML is generated: 6.394071 s
+Memory used before HTML is generated: 423 MB
+Number of hits: 52921
+
+
+Total time before HTML is generated: 8.151264 s
+Memory used after HTML is generated: 440 MB
+
+
+after updating controller
+
+results after updating
+no use of sort
+Total time before HTML is generated: 0.064813 s
+Memory used before HTML is generated: 95 MB
+Number of hits: 52921
+
+Total time before HTML is generated: 3.405265 s
+Memory used after HTML is generated: 296 MB
+
+using sort
+
+Total time before HTML is generated: 0.030787 s
+Memory used before HTML is generated: 320 MB
+Number of hits: 52921
+
+Total time before HTML is generated: 4.55394 s
+Memory used after HTML is generated: 370 MB
+
+
+development 569
+no log found
+do i think i will work with this size of db? most likely much bigger
+
+how to reduce? VACUUM command http://sqlite.org/lang_vacuum.html
+memory: seems to go up for me, have not been able to make it go down even after series of refreshes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Description
 
