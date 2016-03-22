@@ -12,13 +12,17 @@ class ReportsController < ApplicationController
   end
 
   def search
-
 @search = "hello"
-@posts = Assembly.all
+@results = Assembly.all
 if params[:search]
-  @posts = Assembly.search(params[:search]).order("created_at DESC")
+  # @results = Assembly.search(params[:search]).order("created_at DESC")
+  @results = Assembly.find_by_name(params[:search])
+  @sequences = @results.sequences
+  @hits = []
+  @hits = @results.hits.order(percent_similarity: :desc)
+
 else
-  @posts = Assembly.all.order('created_at DESC')
+  @results = Assembly.all.order('created_at DESC')
 end
 
 
@@ -35,7 +39,26 @@ end
   end
 
   def results
-    render "results"
+    # if params[:search]
+    #   @results = Assembly.search(params[:search]).order("created_at DESC")
+    # else
+    #   @results = Assembly.all.order('created_at DESC')
+    # end
+    if params[:search]
+      # @results = Assembly.search(params[:search]).order("created_at DESC")
+
+      @results = Assembly.find_by_name(params[:search])
+      @sequences = @results.sequences
+      @hits = []
+      @hits = @results.hits.order(percent_similarity: :desc)
+      byebug
+    else
+      @results = Assembly.all.order('created_at DESC')
+    end
+
+
+
+
   end
 
 
